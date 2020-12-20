@@ -1,17 +1,24 @@
 # tudbot
 A simple discord bot with node.js
 
-## Instalation
-
-```
-npm insatll
-```
-
+## Information
+***
 npm library used :
 - discord.js (https://github.com/discordjs/discord.js)
 
-## Usage
+## Instalation
+***
+* Step 0
+Creat a bot on https://discord.com/developers/applications/
+* Step 1
+```
+npm insatll
+```
+* Step 2
+Change the bot_token to yours in ./src/config.json
 
+## Usage
+***
 Launch the bot through this command:
 ```
 npm start
