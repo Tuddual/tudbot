@@ -1,7 +1,9 @@
 {
     "setup": false,
     "default": {
-        "prefix": "!"
+        "prefix": "!",
+        "color": "#a1107d"
     },
-    "prefix": "!"
+    "prefix": "!",
+    "color": "#a1107d"
 }
