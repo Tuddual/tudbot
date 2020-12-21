@@ -1,0 +1,7 @@
+{
+    "setup": false,
+    "default": {
+        "prefix": "!"
+    },
+    "prefix": "!"
+}
