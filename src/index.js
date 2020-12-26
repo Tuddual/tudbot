@@ -1,5 +1,5 @@
-const process = require('process'); // Understand node process here : https://nodejs.org/api/process.html#process_process
-
+// Understand node process at https://nodejs.org/api/process.html#process_process
+const process = require('process');
 process.on('unhandledRejection', (reason) => {
     console.error(reason);
     process.exit(1);
@@ -7,14 +7,15 @@ process.on('unhandledRejection', (reason) => {
 
 try {
     var Discord = require("discord.js");
-} catch (error) {
-    console.error("Please install dependencies with 'npm install --only=prod'"); // tell to install dependencies
+} catch (error) { // dependencies hasn"t been installed
+    console.error("Please install dependencies with 'npm install --only=prod'");
     process.exit();
 }
 
-const config = require("./../auth.json");
-if (!Object.prototype.hasOwnProperty.call(config, 'BOT_TOKEN') || config.BOT_TOKEN === 'YOUR BOT TOKEN') {
-    console.error("Please enter your bot token at ./auth.json"); // tell to insert the bot token
+const auth = require("./../auth.json");
+// if the token hasn't been change from 'YOUR BOT TOKEN'
+if (!Object.prototype.hasOwnProperty.call(auth, 'BOT_TOKEN') || auth.BOT_TOKEN === 'YOUR BOT TOKEN') {
+    console.error("Please enter your bot token at ./auth.json");
     process.exit()
 }
 
@@ -33,17 +34,18 @@ client.on("message", function (message) {
     if (args.length === 0) return; // There is no command
     const command = args.shift().toLowerCase();
 
-    // Check if this is a command for admins 1 if the user is an admin
+    // Check if this is a command for admins & if the user is an admin
     if (Object.keys(adminCmds).includes(command) && (message.member.hasPermission('ADMINISTRATOR'))) {
         return adminCmds[command].process(message);
     }
 });
 
-client.login(config.BOT_TOKEN).catch((error) => {
+// Connect the bot to the server
+client.login(auth.BOT_TOKEN).catch((error) => {
     if (error.code === "TOKEN_INVALID") {
-        console.error("The token of the bot is invalid, please change it at ./auth.json");
+        console.error("The token of the bot is invalid, please change it at ./auth.json"); // tell to insert a valid bot token
     } else {
-        console.error(error)
+        console.error(error) // in case of other error (Discord is offline)
     }
     process.exit();
 });
