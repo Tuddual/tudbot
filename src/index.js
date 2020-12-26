@@ -14,6 +14,11 @@ try {
 }
 
 const config = require("./config.json");
+if(!Object.prototype.hasOwnProperty.call(config, 'BOT_TOKEN') || config.bot_token === 'YOUR BOT TOKEN') {
+	console.error("Please enter your bot token at ./src/data.json"); // tell to insert the bot token
+	process.exit()
+}
+
 const data = require("./data.json");
 let adminCmds = require("./adminCmds.js"); // Admin commands
 
