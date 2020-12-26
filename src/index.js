@@ -8,14 +8,13 @@ process.on('unhandledRejection', (reason) => {
 try {
     var Discord = require("discord.js");
 } catch (error) {
-    console.log(error.stack);
-    console.log("Please install dependencies with 'npm install --only=prod'"); // tell to install dependencies
+    console.error("Please install dependencies with 'npm install --only=prod'"); // tell to install dependencies
     process.exit();
 }
 
-const config = require("./config.json");
-if (!Object.prototype.hasOwnProperty.call(config, 'BOT_TOKEN') || config.bot_token === 'YOUR BOT TOKEN') {
-    console.error("Please enter your bot token at ./src/data.json"); // tell to insert the bot token
+const config = require("./../auth.json");
+if (!Object.prototype.hasOwnProperty.call(config, 'BOT_TOKEN') || config.BOT_TOKEN === 'YOUR BOT TOKEN') {
+    console.error("Please enter your bot token at ./auth.json"); // tell to insert the bot token
     process.exit()
 }
 
@@ -40,4 +39,11 @@ client.on("message", function (message) {
     }
 });
 
-client.login(config.BOT_TOKEN);
+client.login(config.BOT_TOKEN).catch((error) => {
+    if (error.code === "TOKEN_INVALID") {
+        console.error("The token of the bot is invalid, please change it at ./auth.json");
+    } else {
+        console.error(error)
+    }
+    process.exit();
+});
