@@ -3,7 +3,7 @@ const process = require('process');
 const Discord = require("discord.js");
 
 const utils = require('../../utils');
-const timelimit = 360000; // 1 hour
+const timelimit = 3600000; // 1 hour
 
 module.exports = {
     description: 'Command to edit the prefix',
