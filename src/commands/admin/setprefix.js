@@ -1,8 +1,8 @@
 // The three next lines can't failed because they have been already executed in index.js
 const process = require('process');
 const Discord = require("discord.js");
-const fs = require('fs');
 
+const utils = require('../../utils');
 const timelimit = 360000; // 1 hour
 
 module.exports = {
@@ -39,23 +39,7 @@ module.exports = {
                             const newprefix = collected.first().content.split(' ')[0];
 
                             process.env.prefix = newprefix;
-
-                            fs.open('./src/data/myserver.json', 'w', (err, fd) => {
-                                if (err) {
-                                    if (err.code === 'ENOENT') {
-                                        console.error('./src/data/myserver.json does not exist');
-                                        return;
-                                    }
-                                    console.error("Cannot overwrite ./src/data/myserver.json");
-                                    throw err;
-                                } else {
-                                    const data = {
-                                        prefix: process.env.prefix,
-                                        color: process.env.color
-                                    }
-                                    fs.writeFileSync(fd, JSON.stringify(data, null, 4));
-                                }
-                            });
+                            utils.saveChange();
 
                             msg.channel.send(`The prefix has been correctly set on \`${newprefix}\``);
                         }).catch(() => {
