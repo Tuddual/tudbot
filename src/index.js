@@ -7,7 +7,7 @@ process.on('unhandledRejection', (reason) => {
 
 try {
     var Discord = require("discord.js");
-} catch (error) { // dependencies hasn"t been installed
+} catch (error) { // dependencies hasn't been installed
     console.error("Please install dependencies with 'npm install --only=prod'");
     process.exit();
 }
@@ -20,11 +20,11 @@ if (!Object.prototype.hasOwnProperty.call(auth, 'BOT_TOKEN') || auth.BOT_TOKEN =
 }
 
 const data = require("./data.json");
-let adminCmds = require("./adminCmds.js"); // Admin commands
+let adminCmds = require("./commands/admin/index.js"); // Admin commands
 
-const client = new Discord.Client();
+const bot = new Discord.Client();
 
-client.on("message", function (message) {
+bot.on("message", function (message) {
     if (message.author.bot) return; // The message is from a bot
     if (!message.content.startsWith(data.prefix)) return; // The message don't concern me.
 
@@ -36,12 +36,12 @@ client.on("message", function (message) {
 
     // Check if this is a command for admins & if the user is an admin
     if (Object.keys(adminCmds).includes(command) && (message.member.hasPermission('ADMINISTRATOR'))) {
-        return adminCmds[command].process(message);
+        return adminCmds[command].process(message, args);
     }
 });
 
 // Connect the bot to the server
-client.login(auth.BOT_TOKEN).catch((error) => {
+bot.login(auth.BOT_TOKEN).catch((error) => {
     if (error.code === "TOKEN_INVALID") {
         console.error("The token of the bot is invalid, please change it at ./auth.json"); // tell to insert a valid bot token
     } else {
