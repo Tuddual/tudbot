@@ -12,7 +12,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
             .setColor(process.env.color)
-            .setTitle('color')
+            .setTitle('Color')
             .setDescription(`The current color is set on \`${process.env.color}\`
             - If you want to change it, react with :gear:
             - If you do not want to change it, react with :white_check_mark:`);
