@@ -1,6 +1,6 @@
 // The two next lines can't failed because they have been already executed in index.js
 const Discord = require("discord.js");
-let data = require("./../../data.json");
+var data = require("../../data");
 
 module.exports = (msg) => {
     if (data.setup === "ongoing") {

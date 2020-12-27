@@ -12,15 +12,15 @@ try {
     process.exit();
 }
 
-const auth = require("./../auth.json");
+const auth = require("../auth.json");
 // if the token hasn't been change from 'YOUR BOT TOKEN'
 if (!Object.prototype.hasOwnProperty.call(auth, 'BOT_TOKEN') || auth.BOT_TOKEN === 'YOUR BOT TOKEN') {
     console.error("Please enter your bot token at ./auth.json");
     process.exit()
 }
 
-const data = require("./data.json");
-let adminCmds = require("./commands/admin/index.js"); // Admin commands
+const data = require("./data");
+let adminCmds = require("./commands/admin"); // Admin commands
 
 const bot = new Discord.Client();
 

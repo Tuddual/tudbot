@@ -1,4 +1,4 @@
-{
+module.exports = {
     "setup": false,
     "default": {
         "prefix": "!",

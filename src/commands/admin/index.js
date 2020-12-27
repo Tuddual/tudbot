@@ -1,8 +1,11 @@
-const setup = require("./setup.js");
+const data = require("../../data");
+
+const setup = require("./setup");
 
 module.exports = {
     "setup": {
-        description: "Use once to start and set up the bot.",
+        description: "Command fully to setup the bot",
+        use: `${data.prefix}setup`,
         process: (message) => { setup(message) }
     }
 }
