@@ -1,6 +1,6 @@
 // The two next lines can't failed because they have been already executed in index.js
 const Discord = require("discord.js");
-var data = require("../../data/myserver.json");
+var data = require("../../data/myserver.json"); // todo: remove this and use process.env.data
 
 module.exports = {
     description: "Command fully to setup the bot",

@@ -1,18 +1,19 @@
-// The two next lines can't failed because they have been already executed in index.js
+// The three next lines can't failed because they have been already executed in index.js
+const process = require('process');
 const Discord = require("discord.js");
-var data = require("../../data/myserver.json");
+const fs = require('fs');
 
 const timelimit = 360000; // 1 hour
 
 module.exports = {
     description: 'Command to edit the prefix',
-    use: `${data.prefix}setprefix`,
+    use: `${process.env.prefix}setprefix`,
     process: (msg) => {
 
         const embed = new Discord.MessageEmbed()
-            .setColor(data.color)
+            .setColor(process.env.color)
             .setTitle('Prefix')
-            .setDescription(`The current prefix is set on \`${data.prefix}\`
+            .setDescription(`The current prefix is set on \`${process.env.prefix}\`
             - If you want to change it, react with :gear:
             - If you do not want to change it, react with :white_check_mark:`);
 
@@ -37,7 +38,25 @@ module.exports = {
 
                             const newprefix = collected.first().content.split(' ')[0];
 
-                            data.prefix = newprefix;
+                            process.env.prefix = newprefix;
+
+                            fs.open('./src/data/myserver.json', 'w', (err, fd) => {
+                                if (err) {
+                                    if (err.code === 'ENOENT') {
+                                        console.error('./src/data/myserver.json does not exist');
+                                        return;
+                                    }
+                                    console.error("Cannot overwrite ./src/data/myserver.json");
+                                    throw err;
+                                } else {
+                                    const data = {
+                                        prefix: process.env.prefix,
+                                        color: process.env.color
+                                    }
+                                    fs.writeFileSync(fd, JSON.stringify(data, null, 4));
+                                }
+                            });
+
                             msg.channel.send(`The prefix has been correctly set on \`${newprefix}\``);
                         }).catch(() => {
                             rules.react('⏲️');

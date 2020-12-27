@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 // Understand node process at https://nodejs.org/api/process.html#process_process
 const process = require('process');
 process.on('unhandledRejection', (reason) => {
@@ -19,16 +21,32 @@ if (!Object.prototype.hasOwnProperty.call(auth, 'BOT_TOKEN') || auth.BOT_TOKEN =
     process.exit()
 }
 
-const data = require("./data/myserver.json");
+fs.open('./src/data/myserver.json', 'r', (err, fd) => {
+    if (err) {
+        if (err.code === 'ENOENT') {
+            console.error('./src/data/myserver.json does not exist');
+            return;
+        }
+        console.error("Cannot read ./src/data/myserver.json");
+        throw err;
+    } else {
+        fs.readFile(fd, 'utf8', (err, data) => {
+            data = JSON.parse(data);
+            process.env.prefix = data.prefix;
+            process.env.color = data.color;
+        });
+    }
+});
+
 let adminCmds = require("./commands/admin"); // Admin commands
 
 const bot = new Discord.Client();
 
 bot.on("message", function (message) {
     if (message.author.bot) return; // The message is from a bot
-    if (!message.content.startsWith(data.prefix)) return; // The message don't concern me.
+    if (!message.content.startsWith(process.env.prefix)) return; // The message don't concern me.
 
-    const commandBody = message.content.slice(data.prefix.length);
+    const commandBody = message.content.slice(process.env.prefix.length);
     const args = commandBody.split(' ');
 
     if (args.length === 0) return; // There is no command
