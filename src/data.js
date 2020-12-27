@@ -1,9 +1,0 @@
-module.exports = {
-    "setup": false,
-    "default": {
-        "prefix": "!",
-        "color": "#a1107d"
-    },
-    "prefix": "!",
-    "color": "#a1107d"
-}

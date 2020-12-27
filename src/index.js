@@ -19,7 +19,7 @@ if (!Object.prototype.hasOwnProperty.call(auth, 'BOT_TOKEN') || auth.BOT_TOKEN =
     process.exit()
 }
 
-const data = require("./data");
+const data = require("./data/myserver.json");
 let adminCmds = require("./commands/admin"); // Admin commands
 
 const bot = new Discord.Client();
