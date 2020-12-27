@@ -1,11 +1,8 @@
-const data = require("../../data");
-
 const setup = require("./setup");
+const setprefix = require("./setprefix");
 
 module.exports = {
-    "setup": {
-        description: "Command fully to setup the bot",
-        use: `${data.prefix}setup`,
-        process: (message) => { setup(message) }
-    }
+    "setup": setup,
+    "setprefix": setprefix,
+    "prefix": setprefix
 }
