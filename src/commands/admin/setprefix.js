@@ -1,19 +1,17 @@
-// The two next lines can't failed because they have been already executed in index.js
-const process = require('process');
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
+let data = require("../../data");
 
-const utils = require('../../utils');
 const timelimit = 3600000; // 1 hour
 
 module.exports = {
     description: 'Command to edit the prefix',
-    use: `${process.env.prefix}setprefix`,
+    use: `${data.prefix}setprefix`,
     process: (msg) => {
 
-        const embed = new Discord.MessageEmbed()
-            .setColor(process.env.color)
+        const embed = new MessageEmbed()
+            .setColor(data.color)
             .setTitle('Prefix')
-            .setDescription(`The current prefix is set on \`${process.env.prefix}\`
+            .setDescription(`The current prefix is set on \`${data.prefix}\`
             - If you want to change it, react with :gear:
             - If you do not want to change it, react with :white_check_mark:`);
 
@@ -40,8 +38,8 @@ module.exports = {
 
                             const newprefix = collected.first().content.split(' ')[0];
 
-                            process.env.prefix = newprefix;
-                            utils.saveChange();
+                            data.prefix = newprefix;
+                            data.savedata();
 
                             msg.channel.send(`The prefix has been correctly set on \`${newprefix}\``);
                         }).catch(() => {

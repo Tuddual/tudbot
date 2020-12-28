@@ -1,10 +1,9 @@
-// The two next lines can't failed because they have been already executed in index.js
-const process = require('process');
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
+let data = require("../../data");
 
 module.exports = {
     description: 'Command to ping admins',
-    use: `${process.env.prefix}admins`,
+    use: `${data.prefix}admins`,
     process: (msg) => {
 
         msg.guild.members.fetch()
@@ -16,15 +15,15 @@ module.exports = {
                     admins.push(GuildMember.user.id)
             }})
         
-            let description = `Admin are people with the administrator permission. They have access to dangerous commands like \`${process.env.prefix}reset\`.
+            let description = `Admin are people with the administrator permission. They have access to dangerous commands like \`${data.prefix}reset\`.
             If you want to allow someone to have access to admin commands, s·he just need to have the administrator permission. \n
             There ${admins.length > 1 ? 'are' : 'is'} actually ${admins.length} admin${admins.length > 1 ? 's' : ''} : \n`;
             admins.forEach(item => {
                 description += ` - <@${item}>\n`;
             });
     
-            const embed = new Discord.MessageEmbed()
-                .setColor(process.env.color)
+            const embed = new MessageEmbed()
+                .setColor(data.color)
                 .setTitle('Admins')
                 .setDescription(description);
     

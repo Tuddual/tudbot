@@ -1,19 +1,17 @@
-// The two next lines can't failed because they have been already executed in index.js
-const process = require('process');
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
+let data = require("../../data");
 
-const utils = require('../../utils');
 const timelimit = 3600000; // 1 hour
 
 module.exports = {
     description: 'Command to edit the color',
-    use: `${process.env.color}setcolor`,
+    use: `${data.color}setcolor`,
     process: (msg) => {
 
-        const embed = new Discord.MessageEmbed()
-            .setColor(process.env.color)
+        const embed = new MessageEmbed()
+            .setColor(data.color)
             .setTitle('Color')
-            .setDescription(`The current color is set on \`${process.env.color}\`
+            .setDescription(`The current color is set on \`${data.color}\`
             - If you want to change it, react with :gear:
             - If you do not want to change it, react with :white_check_mark:`);
 
@@ -32,7 +30,7 @@ module.exports = {
 
                 if (reaction.emoji.name === '⚙️') {
 
-                    msg.channel.send(`Please enter in chat the new color. \n The color need to be codded in hexadecimal like this \`${process.env.color}\`. \n You can choose it here : htmlcolorcodes.com`)
+                    msg.channel.send(`Please enter in chat the new color. \n The color need to be codded in hexadecimal like this \`${data.color}\`. \n You can choose it here : htmlcolorcodes.com`)
                     .then(rules => {
 
                         const hex = /#[0-9A-Fa-f]{6}|[0-9A-Fa-f]{6}/g
@@ -44,8 +42,8 @@ module.exports = {
                                 newcolor = "#" + newcolor
                             }
 
-                            process.env.color = newcolor;
-                            utils.saveChange();
+                            data.color = newcolor;
+                            data.save();
 
                             msg.channel.send(`The color has been correctly set on \`${newcolor}\``);
                         }).catch(() => {

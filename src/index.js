@@ -31,11 +31,11 @@ const intents = new Intents([
 
 const bot = new Client({ ws: { intents } });
 
-bot.on("message", function (message) {
+bot.on("message", (message) => {
     if (message.author.bot) return; // The message is from a bot
-    if (!message.content.startsWith(process.env.prefix)) return; // The message don't concern me.
+    if (!message.content.startsWith(data.prefix)) return; // The message don't concern me.
 
-    const commandBody = message.content.slice(process.env.prefix.length);
+    const commandBody = message.content.slice(data.prefix.length);
     const args = commandBody.split(' ');
 
     if (args.length === 0) return; // There is no command
