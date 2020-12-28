@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 // Understand node process at https://nodejs.org/api/process.html#process_process
 const process = require('process');
 process.on('unhandledRejection', (reason) => {
@@ -21,26 +19,12 @@ if (!Object.prototype.hasOwnProperty.call(auth, 'BOT_TOKEN') || auth.BOT_TOKEN =
     process.exit()
 }
 
-fs.open('./src/data/myserver.json', 'r', (err, fd) => {
-    if (err) {
-        if (err.code === 'ENOENT') {
-            console.error('./src/data/myserver.json does not exist');
-        } else {
-            console.error("Cannot read ./src/data/myserver.json");
-        }
-        throw err;
-    } else {
-        fs.readFile(fd, 'utf8', (err, data) => {
-            data = JSON.parse(data);
-            process.env.prefix = data.prefix;
-            process.env.color = data.color;
-        });
-    }
-});
+let data = require("./data");
 
 let adminCmds = require("./commands/admin"); // Admin commands
+let modCmds = require("./commands/moderator"); // Moderator commands
 
-const intents = new Intents([ 
+const intents = new Intents([
     Intents.NON_PRIVILEGED, // include all non-privileged intents, would be better to specify which ones you actually need
     "GUILD_MEMBERS", // lets you request guild members
 ]);
