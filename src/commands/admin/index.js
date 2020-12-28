@@ -3,6 +3,7 @@ const setprefix = require("./setprefix");
 const setcolor = require("./setcolor");
 const roles = require("./roles");
 const admins = require("./admins");
+const moderators = require("./moderators");
 
 module.exports = {
     // "setup": setup,
@@ -19,5 +20,8 @@ module.exports = {
     "role": roles,
 
     "admin": admins,
-    "admins": admins
+    "admins": admins,
+
+    "moderator": moderators,
+    "moderators": moderators
 }
