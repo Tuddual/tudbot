@@ -1,4 +1,4 @@
-// The three next lines can't failed because they have been already executed in index.js
+// The two next lines can't failed because they have been already executed in index.js
 const process = require('process');
 const Discord = require("discord.js");
 

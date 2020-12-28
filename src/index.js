@@ -25,9 +25,9 @@ fs.open('./src/data/myserver.json', 'r', (err, fd) => {
     if (err) {
         if (err.code === 'ENOENT') {
             console.error('./src/data/myserver.json does not exist');
-            return;
+        } else {
+            console.error("Cannot read ./src/data/myserver.json");
         }
-        console.error("Cannot read ./src/data/myserver.json");
         throw err;
     } else {
         fs.readFile(fd, 'utf8', (err, data) => {
