@@ -22,8 +22,8 @@ module.exports = {
                 }
             })
         
-            let description = `Moderators are people with roles specific roles. They have access to more command than common mortal.
-            If you want to allow someone to have access to admin commands, s·he just need to have a moderator role. To manage moderators roles use \`${data.prefix}setmoderators\`. \n
+            let description = `Moderators are people who have access to more command than common mortal.
+            If you want to allow someone to have access to moderator commands, s·he just need to have a moderator role. To manage moderators roles use \`${data.prefix}setmoderators\`. \n
             There ${moderators.length > 1 ? 'are' : 'is'} actually ${moderators.length} moderator${moderators.length > 1 ? 's' : ''} : \n`;
             moderators.forEach(item => {
                 description += ` - <@${item}>\n`;
