@@ -20,7 +20,9 @@ module.exports = {
         msg.channel.send(embed)
         .then(embed => {
 
-            embed.react('⚙️').then(embed.react('✅'))
+            embed.react('⚙️')
+            .then(embed.react('✅').catch(error => console.error(error)))
+            .catch(error => console.error(error));
 
             const filter = (reaction, user) => ['⚙️', '✅'].includes(reaction.emoji.name) && user.id === msg.author.id;
             embed.awaitReactions(filter, { max: 1, time: timelimit, error: ['time'] })
@@ -47,14 +49,14 @@ module.exports = {
 
                             msg.channel.send(`The color has been correctly set on \`${newcolor}\``);
                         }).catch(() => {
-                            rules.react('⏲️');
+                            rules.react('⏲️').catch(error => console.error(error));
                         });
                     });
                 } else {
-                    embed.react('🆗')
+                    embed.react('🆗').catch(error => console.error(error));
                 }
             }).catch(() => {
-                embed.react('⏲️')
+                embed.react('⏲️').catch(error => console.error(error));
             });
         });
     }
