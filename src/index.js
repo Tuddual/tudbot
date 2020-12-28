@@ -8,7 +8,7 @@ process.on('unhandledRejection', (reason) => {
 });
 
 try {
-    var Discord = require("discord.js");
+    var { Client, Intents } = require("discord.js");
 } catch (error) { // dependencies hasn't been installed
     console.error("Please install dependencies with 'npm install --only=prod'");
     process.exit();
@@ -40,7 +40,12 @@ fs.open('./src/data/myserver.json', 'r', (err, fd) => {
 
 let adminCmds = require("./commands/admin"); // Admin commands
 
-const bot = new Discord.Client();
+const intents = new Intents([ 
+    Intents.NON_PRIVILEGED, // include all non-privileged intents, would be better to specify which ones you actually need
+    "GUILD_MEMBERS", // lets you request guild members
+]);
+
+const bot = new Client({ ws: { intents } });
 
 bot.on("message", function (message) {
     if (message.author.bot) return; // The message is from a bot
