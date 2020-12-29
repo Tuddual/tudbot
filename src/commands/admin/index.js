@@ -4,6 +4,7 @@ const setcolor = require("./setcolor");
 const roles = require("./roles");
 const admins = require("./admins");
 const moderators = require("./moderators");
+const setmoderators = require("./setmoderators");
 
 module.exports = {
     // "setup": setup,
@@ -23,5 +24,8 @@ module.exports = {
     "admins": admins,
 
     "moderator": moderators,
-    "moderators": moderators
+    "moderators": moderators,
+
+    "setmoderator": setmoderators,
+    "setmoderators": setmoderators
 }
