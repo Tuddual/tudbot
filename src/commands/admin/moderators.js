@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 let data = require("../../data");
 
 module.exports = {
-    description: 'Command to ping admins',
-    use: `${data.prefix}admins`,
+    description: 'Command to know who is a moderator',
+    use: `${data.prefix}moderators`,
     process: (msg) => {
 
         msg.guild.members.fetch()
