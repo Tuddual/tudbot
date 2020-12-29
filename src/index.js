@@ -52,7 +52,6 @@ bot.on("message", (message) => {
         } else { // Check if the user is a moderator
             data.moderator.forEach(role => {
                 if (message.member.roles.has(role)) {
-                    console.log(role)
                     return modCmds[command].process(message, args)
                 }
             })
