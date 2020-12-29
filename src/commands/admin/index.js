@@ -1,4 +1,5 @@
 // const setup = require("./setup");
+const reset = require("./reset");
 const setprefix = require("./setprefix");
 const setcolor = require("./setcolor");
 const roles = require("./roles");
@@ -8,6 +9,8 @@ const setmoderators = require("./setmoderators");
 
 module.exports = {
     // "setup": setup,
+
+    "reset": reset,
 
     "setprefix": setprefix,
     "prefix": setprefix,

@@ -38,6 +38,29 @@ class Data {
             }
         });
     }
+
+    reset() {
+        fs.open('./src/data/default.json', 'r', (err, fd) => {
+            if (err) {
+                if (err.code === 'ENOENT') {
+                    console.error('./src/data/default.json does not exist');
+                } else {
+                    console.error("Cannot read ./src/data/default.json");
+                }
+                throw err;
+            } else {
+                fs.readFile(fd, 'utf8', (err, ds) => {
+
+                    const jsonds = JSON.parse(ds);
+
+                    this.prefix = jsonds.prefix;
+                    this.color = jsonds.color;
+                    this.moderator = jsonds.moderator;
+                });
+            }
+        });
+        this.save();
+    }
 }
 
 let data = new Data();
