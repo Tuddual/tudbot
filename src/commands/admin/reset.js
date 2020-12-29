@@ -26,14 +26,11 @@ module.exports = {
             embed.awaitReactions(filter, { max: 1, time: timelimit, error: ['time'] })
             .then(collected => {
 
+                embed.react('🆗').catch(error => console.error(error));
                 const reaction = collected.first();
 
                 if (reaction.emoji.name === '✅') {
-
-                    
-
-                } else {
-                    embed.react('🆗').catch(error => console.error(error));
+                    data.reset();
                 }
             }).catch(() => {
                 embed.react('⏲️').catch(error => console.error(error));
