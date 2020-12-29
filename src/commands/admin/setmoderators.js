@@ -17,13 +17,13 @@ module.exports = {
         } else {
             description += `This are the roles asigned as moderator :\n`;
             data.moderator.forEach(item => {
-                description += ` - <@${item}> \n`;
+                description += ` - ${item} \n`;
             });
         }
 
         description += `
-        - React with :high_brightness: to add a role
-        - React with :anger: to delete a role
+        - React with :high_brightness:, and @ the role in the chat to add a role
+        - React with :anger:, and @ the role in the chat to delete a role
         - React with :white_check_mark: if everything is good`;
 
         const embed = new MessageEmbed()
@@ -45,14 +45,36 @@ module.exports = {
             embed.awaitReactions(filter, { max: 1, time: timelimit, error: ['time'] })
             .then(collected => {
 
+                embed.react('🆗').catch(error => console.error(error));
                 const reaction = collected.first();
 
-                if (reaction.emoji.name === '🔆') {
+                if (reaction.emoji.name === '🔆' || reaction.emoji.name === '💢') {
                     
-                } else if (reaction.emoji.name === '💢') {
-                    
-                } else {
-                    embed.react('🆗').catch(error => console.error(error));
+                    const regex_role = /<@&[0-9]{18}>/g
+                    const filter2 = m => regex_role.test(m.content) && m.author.id === msg.author.id;
+                    msg.channel.awaitMessages(filter2, { max: 1, time: timelimit, error: ['time'] }).then(collected => {
+
+                        const role = collected.first().content;
+                        
+                        if (reaction.emoji.name === '🔆') {
+                            if (data.moderator.includes(role)) {
+                                msg.reply("The role is already as moderator.");
+                            } else {
+                                data.moderator.push(role);
+                                data.save();
+                            }
+                        } else {
+                            if (data.moderator.includes(role)) {
+                                data.moderator = data.moderator.filter(item => item !== role);
+                                data.save();
+                            } else {
+                                msg.reply("The role is already as not moderator.");
+                            }
+                        }
+                        module.exports.process(msg);
+                    }).catch(() => {
+                        embed.react('⏲️').catch(error => console.error(error));
+                    });
                 }
             }).catch(() => {
                 embed.react('⏲️').catch(error => console.error(error));
