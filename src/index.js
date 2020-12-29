@@ -41,7 +41,6 @@ bot.on("message", (message) => {
     if (args.length === 0) return; // There is no command
     const command = args.shift().toLowerCase();
 
-    
     if (Object.keys(adminCmds).includes(command)) { // Check if this is a command for admins
         if (message.member.hasPermission('ADMINISTRATOR')) { // Check if the user is an admin
             return adminCmds[command].process(message, args);
@@ -50,11 +49,10 @@ bot.on("message", (message) => {
         if (message.member.hasPermission('ADMINISTRATOR')) { // Check if the user is an admin
             return modCmds[command].process(message, args);
         } else { // Check if the user is a moderator
-            data.moderator.forEach(role => {
-                if (message.member.roles.has(role)) {
-                    return modCmds[command].process(message, args)
-                }
-            })
+            message.guild.members.fetch(message.member.id); // Reaload the cache
+            if (message.member.roles.cache.some(r => data.moderator.includes('<@&' + r.id + '>'))) {
+                return modCmds[command].process(message, args)
+            }
         }
     }
 });

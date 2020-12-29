@@ -11,13 +11,7 @@ module.exports = {
 
             let moderators = []
             members.each(GuildMember => {
-                let mod = false;
-                data.moderator.forEach(role => {
-                    if (GuildMember.roles.has(role)) {
-                        mod = true;
-                    }
-                })
-                if ((mod || GuildMember.hasPermission('ADMINISTRATOR')) && !GuildMember.user.bot) {
+                if ((GuildMember.roles.cache.some(r => data.moderator.includes("<@&" + r.id + ">")) || GuildMember.hasPermission('ADMINISTRATOR')) && !GuildMember.user.bot) {
                     moderators.push(GuildMember.user.id);
                 }
             })

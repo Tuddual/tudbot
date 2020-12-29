@@ -34,7 +34,7 @@ class Data {
                 throw err;
             } else {
 
-                fs.writeFileSync(fd, JSON.stringify(fd, null, 4));
+                fs.writeFileSync(fd, JSON.stringify(this, null, 4));
             }
         });
     }
