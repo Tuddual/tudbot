@@ -12,7 +12,7 @@ module.exports = (msg, args) => {
 
     if (args.lenght === 0) {
 
-        msg.reply(`, ypu need to specify a command like \`${data.prefix} <command>\``)
+        msg.reply(`, you need to specify a command like \`${data.prefix} <command>\``)
 
     } else {
         const command = args[0];
@@ -23,7 +23,7 @@ module.exports = (msg, args) => {
                 .setTitle(`${data.prefix}${command}`)
                 .setDescription(`This command can only be used by admins.
                 
-                use : \`${data.prefix}${command}\`
+                use : \`${data.prefix}${adminCmds.alias[command].use}\`
                 description : ${adminCmds.alias[command].description}`);
 
             msg.channel.send(embed);
@@ -34,7 +34,7 @@ module.exports = (msg, args) => {
                 .setTitle(`${data.prefix}${command}`)
                 .setDescription(`This command can only be used by moderators.
                 
-                use : \`${data.prefix}${command}\`
+                use : \`${data.prefix}${adminCmds.alias[command].use}\`
                 description : ${modCmds.alias[command].description}`);
                 
             msg.channel.send(embed);
@@ -45,7 +45,7 @@ module.exports = (msg, args) => {
                 .setTitle(`${data.prefix}${command}`)
                 .setDescription(`This command can be used by everyone.
                 
-                use : \`${data.prefix}${command}\`
+                use : \`${data.prefix}${adminCmds.alias[command].use}\`
                 description : ${allCmds.alias[command].description}`);
                 
             msg.channel.send(embed);
