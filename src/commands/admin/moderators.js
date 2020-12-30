@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 let data = require("../../data");
+const perm = require("../../permission");
 
 module.exports = {
     description: 'Command to know who is a moderator',
@@ -11,7 +12,7 @@ module.exports = {
 
             let moderators = []
             members.each(GuildMember => {
-                if ((GuildMember.roles.cache.some(r => data.moderator.includes("<@&" + r.id + ">")) || GuildMember.hasPermission('ADMINISTRATOR')) && !GuildMember.user.bot) {
+                if (perm.isMod(GuildMember) && !GuildMember.user.bot) {
                     moderators.push(GuildMember.user.id);
                 }
             })
