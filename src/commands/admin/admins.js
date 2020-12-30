@@ -19,9 +19,9 @@ module.exports = {
             let description = `Admin are people with the administrator permission. They have access to dangerous commands like \`${data.prefix}reset\`.
             If you want to allow someone to have access to admin commands, s·he just need to have the administrator permission. \n
             There ${admins.length > 1 ? 'are' : 'is'} actually ${admins.length} admin${admins.length > 1 ? 's' : ''} : \n`;
-            admins.forEach(item => {
+            for (const item of admins) {
                 description += ` - <@${item}>\n`;
-            });
+            }
     
             const embed = new MessageEmbed()
                 .setColor(data.color)

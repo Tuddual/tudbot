@@ -20,9 +20,9 @@ module.exports = {
             let description = `Moderators are people who have access to more command than common mortal.
             If you want to allow someone to have access to moderator commands, s·he just need to have a moderator role. To manage moderators roles use \`${data.prefix}setmoderators\`. \n
             There ${moderators.length > 1 ? 'are' : 'is'} actually ${moderators.length} moderator${moderators.length > 1 ? 's' : ''} : \n`;
-            moderators.forEach(item => {
+            for (const item of moderators) {
                 description += ` - <@${item}>\n`;
-            });
+            }
     
             const embed = new MessageEmbed()
                 .setColor(data.color)

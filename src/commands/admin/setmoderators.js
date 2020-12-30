@@ -26,9 +26,9 @@ module.exports = {
             description += `This is the role asigned as moderator : <@&${data.moderator[0]}>\n`;
         } else {
             description += `This are the roles asigned as moderator :\n`;
-            data.moderator.forEach(item => {
+            for (const item of data.moderator) {
                 description += ` - <@&${item}> \n`;
-            });
+            }
         }
 
         description += `
