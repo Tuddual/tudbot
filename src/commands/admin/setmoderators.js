@@ -8,6 +8,16 @@ module.exports = {
     use: `setmoderators`,
     process: (msg) => {
 
+        for (const askrole of data.moderator) {
+            msg.guild.roles.fetch(askrole)
+            .then(role => {
+                if (role === null) {
+                    data.moderator = data.moderator.filter(item => item !== askrole);
+                    data.save();
+                }
+            });
+        }
+
         let description = `Moderators are people who have access to more command than common mortal. `;
 
         if (data.moderator.length === 0) {
