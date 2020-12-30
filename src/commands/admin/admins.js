@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 let data = require("../../data");
-const perm = require("./permission");
+const perm = require("../../permission");
 
 module.exports = {
     description: 'Command to know who is an admin',
