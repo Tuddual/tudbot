@@ -6,11 +6,11 @@ const timelimit = 3600000; // 1 hour
 module.exports = {
     description: 'Command to edit who is a moderators',
     use: `setmoderators`,
-    process: (msg) => {
+    process: async (msg) => {
 
         for (const askrole of data.moderator) {
-            msg.guild.roles.fetch(askrole)
-            .then(role => {
+            await msg.guild.roles.fetch(askrole)
+            .then( role => {
                 if (role === null) {
                     data.moderator = data.moderator.filter(item => item !== askrole);
                     data.save();
