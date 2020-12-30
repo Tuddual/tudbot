@@ -20,6 +20,7 @@ if (!Object.prototype.hasOwnProperty.call(auth, 'BOT_TOKEN') || auth.BOT_TOKEN =
 }
 
 let data = require("./data");
+const perm = require("./permission");
 
 const adminCmds = require("./commands/admin"); // Admin commands
 const modCmds = require("./commands/moderator"); // Moderator commands
@@ -49,17 +50,12 @@ bot.on("message", (message) => {
     } else if (command === "help"){
         return help(message, args);
     } else if (Object.keys(adminCmds.alias).includes(command)) { // Check if this is a command for admins
-        if (message.member.hasPermission('ADMINISTRATOR')) { // Check if the user is an admin
+        if (perm.msgfromAdmin(message)) { // Check if the user is an admin
             return adminCmds.alias[command].process(message, args);
         }
     } else if (Object.keys(modCmds.alias).includes(command)) { // Check if this is a command for moderators
-        if (message.member.hasPermission('ADMINISTRATOR')) { // Check if the user is an admin
-            return modCmds.alias[command].process(message, args);
-        } else { // Check if the user is a moderator
-            message.guild.members.fetch(message.member.id); // Reaload the cache
-            if (message.member.roles.cache.some(r => data.moderator.includes('<@&' + r.id + '>'))) {
-                return modCmds.alias[command].process(message, args)
-            }
+        if (perm.msgfromMod(message)) { // Check if the user is a moderator
+            return modCmds.alias[command].process(message, args)
         }
     } else if (Object.keys(allCmds.alias).includes(command)) { // Check if this is a command
         return allCmds.alias[command].process(message, args)

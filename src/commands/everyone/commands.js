@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 let data = require("../../data");
+const perm = require("./permission");
 
 const adminCmds = require("../admin"); // Admin commands
 const modCmds = require("../moderator"); // Moderator commands
@@ -7,10 +8,8 @@ const allCmds = require("../everyone"); // Everyone commands
 
 module.exports = (msg) => {
 
-    const admin = msg.member.hasPermission('ADMINISTRATOR');
-    const mod = msg.member.roles.cache.some(r => data.moderator.includes('<@&' + r.id + '>'));
 
-    if (admin) {
+    if (perm.msgfromAdmin(msg)) {
 
         let description_admin = `The list below are commands that only admin can use : \n`
         for (const [, value] of Object.entries(adminCmds.unique)) {
@@ -24,7 +23,7 @@ module.exports = (msg) => {
 
         msg.channel.send(embed_admin);
     }
-    if (admin || mod) {
+    if (perm.msgfromMod(msg)) {
 
         let description_mod = `The list below are commands that only moderators can use : \n`
         for (const [, value] of Object.entries(modCmds.unique)) {
