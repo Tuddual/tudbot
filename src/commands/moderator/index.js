@@ -1,9 +1,14 @@
 
 
 module.exports = {
-    "test": {
-        process: (msg) => {
-            msg.channel.send("Test passed :)");
+    alias: {
+        "test": {
+            process: (msg) => {
+                msg.channel.send("Test passed moderator :)");
+            }
         }
-    }
+    },
+    unique: [
+        
+    ]
 }

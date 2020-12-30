@@ -21,8 +21,11 @@ if (!Object.prototype.hasOwnProperty.call(auth, 'BOT_TOKEN') || auth.BOT_TOKEN =
 
 let data = require("./data");
 
-let adminCmds = require("./commands/admin"); // Admin commands
-let modCmds = require("./commands/moderator"); // Moderator commands
+const adminCmds = require("./commands/admin"); // Admin commands
+const modCmds = require("./commands/moderator"); // Moderator commands
+const allCmds = require("./commands/everyone"); // Everyone commands
+const commands = require("./commands/everyone/commands");
+const help = require("./commands/everyone/help");
 
 const intents = new Intents([
     Intents.NON_PRIVILEGED, // include all non-privileged intents, would be better to specify which ones you actually need
@@ -41,19 +44,25 @@ bot.on("message", (message) => {
     if (args.length === 0) return; // There is no command
     const command = args.shift().toLowerCase();
 
-    if (Object.keys(adminCmds).includes(command)) { // Check if this is a command for admins
+    if (command === "commands") {
+        return commands(message);
+    } else if (command === "help"){
+        return help(message, args);
+    } else if (Object.keys(adminCmds.alias).includes(command)) { // Check if this is a command for admins
         if (message.member.hasPermission('ADMINISTRATOR')) { // Check if the user is an admin
-            return adminCmds[command].process(message, args);
+            return adminCmds.alias[command].process(message, args);
         }
-    } else if (Object.keys(modCmds).includes(command)) { // Check if this is a command for moderators
+    } else if (Object.keys(modCmds.alias).includes(command)) { // Check if this is a command for moderators
         if (message.member.hasPermission('ADMINISTRATOR')) { // Check if the user is an admin
-            return modCmds[command].process(message, args);
+            return modCmds.alias[command].process(message, args);
         } else { // Check if the user is a moderator
             message.guild.members.fetch(message.member.id); // Reaload the cache
             if (message.member.roles.cache.some(r => data.moderator.includes('<@&' + r.id + '>'))) {
-                return modCmds[command].process(message, args)
+                return modCmds.alias[command].process(message, args)
             }
         }
+    } else if (Object.keys(allCmds.alias).includes(command)) { // Check if this is a command
+        return allCmds.alias[command].process(message, args)
     }
 });
 

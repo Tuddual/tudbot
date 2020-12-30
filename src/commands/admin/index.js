@@ -1,4 +1,3 @@
-// const setup = require("./setup");
 const reset = require("./reset");
 const setprefix = require("./setprefix");
 const setcolor = require("./setcolor");
@@ -8,27 +7,36 @@ const moderators = require("./moderators");
 const setmoderators = require("./setmoderators");
 
 module.exports = {
-    // "setup": setup,
+    alias: {
+        "reset": reset,
 
-    "reset": reset,
+        "setprefix": setprefix,
+        "prefix": setprefix,
 
-    "setprefix": setprefix,
-    "prefix": setprefix,
+        "setcolor": setcolor,
+        "color": setcolor,
 
-    "setcolor": setcolor,
-    "color": setcolor,
+        "setroles": roles,
+        "roles": roles,
+        "setrole": roles,
+        "role": roles,
 
-    "setroles": roles,
-    "roles": roles,
-    "setrole": roles,
-    "role": roles,
+        "admin": admins,
+        "admins": admins,
 
-    "admin": admins,
-    "admins": admins,
+        "moderator": moderators,
+        "moderators": moderators,
 
-    "moderator": moderators,
-    "moderators": moderators,
-
-    "setmoderator": setmoderators,
-    "setmoderators": setmoderators
+        "setmoderator": setmoderators,
+        "setmoderators": setmoderators
+    },
+    unique: [
+        "reset",
+        "setprefix",
+        "setcolor",
+        "setroles",
+        "admins",
+        "moderators",
+        "setmoderators"
+    ]
 }
