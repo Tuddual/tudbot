@@ -8,7 +8,7 @@ module.exports = {
         return message.member.hasPermission('ADMINISTRATOR');
     },
     isMod: (member) => {
-        return member.hasPermission('ADMINISTRATOR') || member.roles.cache.some(r => data.moderator.includes('<@&' + r.id + '>'));
+        return member.hasPermission('ADMINISTRATOR') || member.roles.cache.some(r => data.moderator.includes(r.id));
     },
     msgfromMod: (message) => {
         if (this.isAdmin(message.member)) {

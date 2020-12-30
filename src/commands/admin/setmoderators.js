@@ -13,11 +13,11 @@ module.exports = {
         if (data.moderator.length === 0) {
             description += `There is no role assigned as moderator.\n`
         } else if (data.moderator.length === 1){
-            description += `This is the role asigned as moderator : ${data.moderator[0]}\n`;
+            description += `This is the role asigned as moderator : <@&${data.moderator[0]}>\n`;
         } else {
             description += `This are the roles asigned as moderator :\n`;
             data.moderator.forEach(item => {
-                description += ` - ${item} \n`;
+                description += ` - <@&${item}> \n`;
             });
         }
 
@@ -54,7 +54,7 @@ module.exports = {
                     const filter2 = m => regex_role.test(m.content) && m.author.id === msg.author.id;
                     msg.channel.awaitMessages(filter2, { max: 1, time: timelimit, error: ['time'] }).then(collected => {
 
-                        const role = collected.first().content;
+                        const role = collected.first().content.slice(3, 21);
                         
                         if (reaction.emoji.name === '🔆') {
                             if (data.moderator.includes(role)) {
