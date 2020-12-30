@@ -8,19 +8,15 @@ module.exports = {
     use: `setmoderators`,
     process: async (msg) => {
 
-        function deleteOldRole() {
-            for (const askrole of data.moderator) {
-                msg.guild.roles.fetch(askrole)
-                .then(role => {
-                    if (role === null) {
-                        data.moderator = data.moderator.filter(item => item !== askrole);
-                        data.save();
-                    }
-                });
-            }
+        for (const askrole of data.moderator) {
+            await msg.guild.roles.fetch(askrole)
+            .then( role => {
+                if (role === null) {
+                    data.moderator = data.moderator.filter(item => item !== askrole);
+                    data.save();
+                }
+            });
         }
-
-        await deleteOldRole();
 
         let description = `Moderators are people who have access to more command than common mortal. `;
 
