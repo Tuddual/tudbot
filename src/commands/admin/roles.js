@@ -3,7 +3,7 @@ let data = require("../../data");
 
 module.exports = {
     description: 'Command to describe admin role and moderator role',
-    use: `${data.prefix}roles`,
+    use: `roles`,
     process: (msg) => {
 
         const embed = new MessageEmbed()

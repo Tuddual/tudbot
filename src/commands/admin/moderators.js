@@ -3,7 +3,7 @@ let data = require("../../data");
 
 module.exports = {
     description: 'Command to know who is a moderator',
-    use: `${data.prefix}moderators`,
+    use: `moderators`,
     process: (msg) => {
 
         msg.guild.members.fetch()

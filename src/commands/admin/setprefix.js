@@ -5,7 +5,7 @@ const timelimit = 3600000; // 1 hour
 
 module.exports = {
     description: 'Command to edit the prefix',
-    use: `${data.prefix}setprefix`,
+    use: `setprefix`,
     process: (msg) => {
 
         const embed = new MessageEmbed()

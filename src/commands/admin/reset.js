@@ -5,7 +5,7 @@ const timelimit = 3600000; // 1 hour
 
 module.exports = {
     description: 'Command to reset the bot by default',
-    use: `${data.prefix}reset`,
+    use: `reset`,
     process: (msg) => {
 
         const embed = new MessageEmbed()

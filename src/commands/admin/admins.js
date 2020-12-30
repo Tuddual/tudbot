@@ -3,7 +3,7 @@ let data = require("../../data");
 
 module.exports = {
     description: 'Command to know who is an admin',
-    use: `${data.prefix}admins`,
+    use: `admins`,
     process: (msg) => {
 
         msg.guild.members.fetch()

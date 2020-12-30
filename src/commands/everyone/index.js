@@ -2,15 +2,13 @@
 
 
 // help and commands are defined here to prevent require loop
-let data = require("../../data");
-
 const commands = {
     description: 'Command to have a list of the commands',
-    use: `${data.prefix}commands`
+    use: `commands`
 };
 const help = {
     description: 'Command to have a description for a specific command.',
-    use: `${data.prefix}help <command>`
+    use: `help <command>`
 };
 
 module.exports = {

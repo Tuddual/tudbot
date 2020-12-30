@@ -5,7 +5,7 @@ const timelimit = 3600000; // 1 hour
 
 module.exports = {
     description: 'Command to edit who is a moderators',
-    use: `${data.prefix}setmoderators`,
+    use: `setmoderators`,
     process: (msg) => {
 
         let description = `Moderators are people who have access to more command than common mortal. `;
