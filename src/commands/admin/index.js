@@ -1,40 +1,34 @@
 const reset = require("./reset");
 const setprefix = require("./setprefix");
 const setcolor = require("./setcolor");
-const roles = require("./roles");
 const admins = require("./admins");
 const moderators = require("./moderators");
-const setmoderators = require("./setmoderators");
+// const setmoderators = require("./setmoderators");
 
 module.exports = {
     alias: {
         "reset": reset,
 
-        "setprefix": setprefix,
         "prefix": setprefix,
+        "setprefix": setprefix,
 
-        "setcolor": setcolor,
         "color": setcolor,
-
-        "setroles": roles,
-        "roles": roles,
-        "setrole": roles,
-        "role": roles,
+        "setcolor": setcolor,
 
         "admin": admins,
         "admins": admins,
+        "setadmin": admins,
+        "setadmins": admins,
 
         "moderator": moderators,
         "moderators": moderators,
-
-        "setmoderator": setmoderators,
-        "setmoderators": setmoderators
+        "setmoderator": moderators,
+        "setmoderators": moderators
     },
     unique: [
         "reset",
         "setprefix",
         "setcolor",
-        "setroles",
         "admins",
         "moderators",
         "setmoderators"
