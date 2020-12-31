@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 let data = require("../../data");
 
 module.exports = {
-    description: 'Command to edit the border color (left) of bot embeds.',
-    long_description: `\`${data.prefix}setcolor <newcolor>\` is a command to edit the border color (left) of bot embeds.
+    description: 'Command to edit the border color of my embeds.',
+    long_description: `\`${data.prefix}setcolor <newcolor>\` is a command to edit the border color (left) of my embeds.
     The color is currently set to \`${data.color}\`
     The color must be encoded in hexadecimal, you can choose it here: https://htmlcolorcodes.com/.`,
     use: `setcolor <newcolor>`,
@@ -14,7 +14,7 @@ module.exports = {
             const embed = new MessageEmbed()
                 .setColor(data.color)
                 .setTitle(`Color`)
-                .setDescription(`\`${data.prefix}setcolor <newcolor>\` is a command to edit the border color (left) of bot embeds.
+                .setDescription(`\`${data.prefix}setcolor <newcolor>\` is a command to edit the border color (left) of my embeds.
                 The color is currently set to \`${data.color}\`
                 The color must be encoded in hexadecimal, you can choose it here: https://htmlcolorcodes.com/.`);
 
@@ -37,7 +37,7 @@ module.exports = {
                 data.color = (newcolor.length === 7 ? newcolor: '#' + newcolor );
                 data.save();
                 
-                msg.reply(`the color has been correctly set to ${data.color} !`)
+                msg.reply(`the color has been correctly set to \`${data.color}\` !`)
                 .catch((error) => {
                     console.error(error);
                     msg.react('😞').catch(error => console.error(error));
