@@ -30,7 +30,12 @@ module.exports = {
                 .setTitle('Admins')
                 .setDescription(description);
     
-            msg.channel.send(embed);
+            msg.channel.send(embed)
+            .catch((error) => {
+                console.error(error);
+                msg.react('😞').catch(error => console.error(error));
+            });
+            
         }).catch(() => {
             console.error("You need enable the option 'Server Members Intent' at 'https://discord.com/developers/applications'");
             msg.react('😞').catch(error => console.error(error));
