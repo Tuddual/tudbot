@@ -3,7 +3,8 @@ const setprefix = require("./setprefix");
 const setcolor = require("./setcolor");
 const admins = require("./admins");
 const moderators = require("./moderators");
-// const setmoderators = require("./setmoderators");
+const addmoderator = require("./addmoderator");
+const delmoderator = require("./delmoderator");
 
 module.exports = {
     alias: {
@@ -23,7 +24,13 @@ module.exports = {
         "moderator": moderators,
         "moderators": moderators,
         "setmoderator": moderators,
-        "setmoderators": moderators
+        "setmoderators": moderators,
+
+        "addmoderator": addmoderator,
+        "addmoderators": addmoderator,
+
+        "delmoderator": delmoderator,
+        "delmoderators": delmoderator,
     },
     unique: [
         "reset",
@@ -31,6 +38,7 @@ module.exports = {
         "setcolor",
         "admins",
         "moderators",
-        "setmoderators"
+        "addmoderator",
+        "delmoderator",
     ]
 }
