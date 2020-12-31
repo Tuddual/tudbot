@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 let data = require("../../data");
 
 module.exports = {
-    description: 'Command to edit the prefix used in front of every commands.',
+    description: 'Command to edit the prefix used to ask me.',
     long_description: `\`${data.prefix}setprefix <newprefix>\` is a command to edit the prefix used in front of every commands.
     The prefix is currently set to \`${data.prefix}\``,
     use: `setprefix <newprefix>`,
