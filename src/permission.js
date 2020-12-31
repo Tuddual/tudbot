@@ -11,11 +11,11 @@ module.exports = {
         return member.hasPermission('ADMINISTRATOR') || member.roles.cache.some(r => data.moderator.includes(r.id));
     },
     msgfromMod: (message) => {
-        if (this.isAdmin(message.member)) {
+        if (message.member.hasPermission('ADMINISTRATOR')) {
             return true;
         } else {
             message.guild.members.fetch(message.member.id); // Reaload the cache
-            return this.isMod(message.member);
+            return message.member.hasPermission('ADMINISTRATOR') || message.member.roles.cache.some(r => data.moderator.includes(r.id));
         }
     }
 }
