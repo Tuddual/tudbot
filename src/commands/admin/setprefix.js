@@ -14,7 +14,7 @@ module.exports = {
                 .setColor(data.color)
                 .setTitle(`Prefix`)
                 .setDescription(`\`${data.prefix}setprefix <newprefix>\` is a command to edit the prefix used in front of every commands.
-                The prefix is currently set to \`${data.prefix}\``);
+                Please specify a prefix.`);
 
             msg.channel.send(embed)
             .catch((error) => {
@@ -29,7 +29,7 @@ module.exports = {
             data.prefix = args[0];
             data.save();
             
-            msg.reply(`the prefix has been correctly set to \`${data.prefix}\` !`)
+            msg.reply(`the prefix has been successfully set to \`${data.prefix}\` !`)
             .catch((error) => {
                 console.error(error);
                 msg.react('😞').catch(error => console.error(error));
