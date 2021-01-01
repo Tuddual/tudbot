@@ -4,19 +4,20 @@ A simple discord bot with node.js.
 ## Features
 
 **Admin commands**
+
 * `!reset` : Command to reset the bot by default
-* `!setprefix` : Command to edit the prefix
-* `!setcolor` : Command to edit the color
-* `!roles` : Command to describe admin role and moderator role
-* `!admins` : Command to know who is an admin
-* `!moderators` : Command to know who is a moderator
-* `!setmoderators` : Command to edit who is a moderators
+* `!setprefix <newprefix>` : Command to edit the prefix used to ask me
+* `!setcolor <newcolor>` : Command to edit the border color of my embeds
+* `!admins` : Command to know everything about an admin
+* `!moderators` : Command to know everything about a moderator
+* `!addmoderator <newmoderator>` : Command to add a moderator role
+* `!delmoderator <oldmoderator>` : Command to remove a moderator role
 
 **Moderator commands**
-* 
+* none for the moment
 
 **Commands**
-* `!help <command>` : Command to have a description for a specific command.
+* `!help <command>` : Command to have a description for a specific command
 * `!commands` : Command to have a list of the commands
 
 ## Instalation

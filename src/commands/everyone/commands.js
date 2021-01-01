@@ -21,7 +21,11 @@ module.exports = (msg) => {
             .setTitle('Admin commands')
             .setDescription(description_admin);
 
-        msg.channel.send(embed_admin);
+        msg.channel.send(embed_admin)
+        .catch((error) => {
+            console.error(error);
+            msg.react('😞').catch(error => console.error(error));
+        });
     }
     if (perm.msgfromMod(msg)) {
 
@@ -35,7 +39,11 @@ module.exports = (msg) => {
             .setTitle('Moderator commands')
             .setDescription(description_mod);
 
-        msg.channel.send(embed_mod);
+        msg.channel.send(embed_mod)
+        .catch((error) => {
+            console.error(error);
+            msg.react('😞').catch(error => console.error(error));
+        });
     }
 
     let description_all = `The list below are commands that everybody can use : \n`
@@ -48,5 +56,9 @@ module.exports = (msg) => {
         .setTitle('Commands')
         .setDescription(description_all);
 
-    msg.channel.send(embed_all);
+    msg.channel.send(embed_all)
+    .catch((error) => {
+        console.error(error);
+        msg.react('😞').catch(error => console.error(error));
+    });
 };
