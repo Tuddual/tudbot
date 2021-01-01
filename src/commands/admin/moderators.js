@@ -3,7 +3,7 @@ let data = require("../../data");
 
 module.exports = {
     description: 'Command to know everything about a moderator.',
-    long_description: `\`${data.prefix}admins\` is a command to know who are moderators.
+    long_description: ` is a command to know who are moderators.
     This command also mention how to become a moderator.`,
     use: `moderators`,
     process: async (msg) => {

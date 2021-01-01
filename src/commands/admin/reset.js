@@ -4,8 +4,8 @@ let data = require("../../data");
 const timelimit = 3600000; // 1 hour
 
 module.exports = {
-    description: 'Command to reset the bot by default',
-    long_description: `\`${data.prefix}reset\` is a command to reset the bot by default.
+    description: 'Command to reset the bot by default.',
+    long_description: ` is a command to reset the bot by default.
     The server owner need to accept with a react to complete the process.`,
     use: `reset`,
     process: (msg) => {

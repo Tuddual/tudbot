@@ -3,7 +3,7 @@ let data = require("../../data");
 
 module.exports = {
     description: 'Command to add a moderator role.',
-    long_description: `\`${data.prefix}addmoderator <newmoderator>\` is a command to add a moderator role.
+    long_description: ` is a command to add a moderator role.
     More information about moderator can be found with \`${data.prefix}moderators\``,
     use: `addmoderator <newmoderator>`,
     process: (msg, args) => {

@@ -3,7 +3,7 @@ let data = require("../../data");
 
 module.exports = {
     description: 'Command to edit the border color of my embeds.',
-    long_description: `\`${data.prefix}setcolor <newcolor>\` is a command to edit the border color (left) of my embeds.
+    long_description: ` is a command to edit the border color (left) of my embeds.
     The color is currently set to \`${data.color}\`
     The color must be encoded in hexadecimal, you can choose it here: https://htmlcolorcodes.com/.`,
     use: `setcolor <newcolor>`,

@@ -3,7 +3,7 @@ let data = require("../../data");
 
 module.exports = {
     description: 'Command to remove a moderator role.',
-    long_description: `\`${data.prefix}delmoderator <newmoderator>\` is a command to remove a moderator role.
+    long_description: ` is a command to remove a moderator role.
     More information about moderator can be found with \`${data.prefix}moderators\``,
     use: `delmoderator <oldmoderator>`,
     process: (msg, args) => {

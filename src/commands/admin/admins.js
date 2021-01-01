@@ -4,7 +4,7 @@ const perm = require("../../permission");
 
 module.exports = {
     description: 'Command to know everything about an admin.',
-    long_description: `\`${data.prefix}admins\` is a command to know who are admins.
+    long_description: ` is a command to know who are admins.
     This command also mention how to become an admin and which person is an admin.`,
     use: `admins`,
     process: (msg) => {
