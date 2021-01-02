@@ -45,11 +45,7 @@ bot.on("message", (message) => {
     if (args.length === 0) return; // There is no command
     const command = args.shift().toLowerCase();
 
-    if (command === "commands") {
-        return commands(message);
-    } else if (command === "help"){
-        return help(message, args);
-    } else if (Object.keys(adminCmds.alias).includes(command)) { // Check if this is a command for admins
+    if (Object.keys(adminCmds.alias).includes(command)) { // Check if this is a command for admins
         if (perm.msgfromAdmin(message)) { // Check if the user is an admin
             return adminCmds.alias[command].process(message, args);
         }
@@ -57,6 +53,8 @@ bot.on("message", (message) => {
         if (perm.msgfromMod(message)) { // Check if the user is a moderator
             return modCmds.alias[command].process(message, args)
         }
+    } else if (Object.keys(loop.alias).includes(command)) { // Check if this is a command with a prevent of looping
+        return loop.alias[command].process(message, args)
     } else if (Object.keys(allCmds.alias).includes(command)) { // Check if this is a command
         return allCmds.alias[command].process(message, args)
     }

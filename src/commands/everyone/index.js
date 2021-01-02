@@ -16,8 +16,6 @@ const help = {
 module.exports = {
     alias: {
         "help": help,
-
-        "command": commands,
         "commands": commands
     },
     unique: [
