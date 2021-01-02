@@ -1,14 +1,12 @@
 const { MessageEmbed } = require("discord.js");
 let data = require("../../../data");
+const perm = require("../../../permission");
 
 const adminCmds = require("../../admin"); // Admin commands
 const modCmds = require("../../moderator"); // Moderator commands
 const allCmds = require("../../everyone"); // Everyone commands
 
 module.exports = (msg, args) => {
-
-    const admin = msg.member.hasPermission('ADMINISTRATOR');
-    const mod = msg.member.roles.cache.some(r => data.moderator.includes('<@&' + r.id + '>'));
 
     if (args.lenght === 0) {
 
@@ -17,7 +15,7 @@ module.exports = (msg, args) => {
     } else {
         const command = args[0];
 
-        if (Object.keys(adminCmds.alias).includes(command) && admin) {
+        if (Object.keys(adminCmds.alias).includes(command) && perm.msgfromAdmin(msg)) {
 
             const embed = new MessageEmbed()
                 .setColor(data.color)
@@ -33,7 +31,7 @@ module.exports = (msg, args) => {
                 msg.react('😞').catch(error => console.error(error));
             });
 
-        } else if (Object.keys(modCmds.alias).includes(command) && (admin || mod)) {
+        } else if (Object.keys(modCmds.alias).includes(command) && perm.msgfromMod(msg)) {
 
             const embed = new MessageEmbed()
                 .setColor(data.color)
