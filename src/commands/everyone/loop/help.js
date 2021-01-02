@@ -1,9 +1,9 @@
 const { MessageEmbed } = require("discord.js");
-let data = require("../../data");
+let data = require("../../../data");
 
-const adminCmds = require("../admin"); // Admin commands
-const modCmds = require("../moderator"); // Moderator commands
-const allCmds = require("../everyone"); // Everyone commands
+const adminCmds = require("../../admin"); // Admin commands
+const modCmds = require("../../moderator"); // Moderator commands
+const allCmds = require("../../everyone"); // Everyone commands
 
 module.exports = (msg, args) => {
 
