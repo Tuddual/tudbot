@@ -16,7 +16,7 @@ module.exports = {
                 .setTitle(`Color`)
                 .setDescription(`\`${data.prefix}setcolor <newcolor>\` is a command to edit the border color (left) of my embeds.
                 The color must be encoded in hexadecimal, you can choose it here: https://htmlcolorcodes.com/.
-                Please specify a prefix.`);
+                Please specify a color as the current set to \`${data.color}\`.`);
 
             msg.channel.send(embed)
             .catch((error) => {
