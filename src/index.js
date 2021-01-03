@@ -25,8 +25,7 @@ const perm = require("./permission");
 const adminCmds = require("./commands/admin"); // Admin commands
 const modCmds = require("./commands/moderator"); // Moderator commands
 const allCmds = require("./commands/everyone"); // Everyone commands
-const commands = require("./commands/everyone/commands");
-const help = require("./commands/everyone/help");
+const loop = require("./commands/everyone/loop"); // Everyone commands -loop
 
 const intents = new Intents([
     Intents.NON_PRIVILEGED, // include all non-privileged intents, would be better to specify which ones you actually need
